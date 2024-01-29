@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    ports:
+      - 8091:8091
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/security?autoReconnect=true&useSSL=false
+    networks:
+      - springboot-mysql-network
+    depends_on:
+      - docker-mysql
+
+  docker-mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=root
+    ports:
+      - 3306:3306
+    networks:
+      - springboot-mysql-network
+networks:
+  springboot-mysql-network:

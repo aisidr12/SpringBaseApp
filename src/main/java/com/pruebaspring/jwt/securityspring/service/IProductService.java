@@ -1,9 +1,10 @@
-package com.spring.security.jwt.service;
+package com.pruebaspring.jwt.securityspring.service;
 
-import com.spring.security.jwt.model.ProductModel;
+
+import com.pruebaspring.jwt.securityspring.model.ProductModel;
 
 import java.util.List;
 
 public interface IProductService {
-    public List<ProductModel> findAll();
+     List<ProductModel> findAll();
 }

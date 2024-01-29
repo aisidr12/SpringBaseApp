@@ -1,26 +1,22 @@
-package com.spring.security.jwt.service;
+package com.pruebaspring.jwt.securityspring.service;
 
-import com.spring.security.jwt.model.ProductModel;
-import com.spring.security.jwt.repository.IProductResository;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pruebaspring.jwt.securityspring.mapper.ProductMapper;
+import com.pruebaspring.jwt.securityspring.model.ProductModel;
+import com.pruebaspring.jwt.securityspring.repository.IProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService implements  IProductService{
-    @Autowired
-    private IProductResository iProductResository;
+
+    private final IProductRepository productResository;
+    private final ProductMapper mapper;
 
     @Override
     public List<ProductModel> findAll() {
-        List<ProductModel> list;
-        try{
-            list = iProductResository.findAll();
-        }catch (Exception ex){
-            throw ex;
-        }
-        return list;
+     return productResository.findAll().stream().map(mapper::mapToModel).toList();
     }
 }

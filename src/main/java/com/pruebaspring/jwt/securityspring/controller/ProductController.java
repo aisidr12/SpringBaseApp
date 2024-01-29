@@ -1,26 +1,29 @@
-package com.spring.security.jwt.controller;
+package com.pruebaspring.jwt.securityspring.controller;
 
-import com.spring.security.jwt.service.IProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.pruebaspring.jwt.securityspring.model.ProductModel;
+import com.pruebaspring.jwt.securityspring.service.IProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.spring.security.jwt.model.ProductModel;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("api/v1")
 public class ProductController {
 
-    @Autowired
-    IProductService iProductService;
+    private final IProductService iProductService;
+
+    public ProductController(IProductService iProductService) {
+        this.iProductService = iProductService;
+    }
 
     @GetMapping("/list")
     public ResponseEntity<?> list() {
-        List<ProductModel> products = this.iProductService.findAll();
+        List<ProductModel> products = iProductService.findAll();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 }
