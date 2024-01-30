@@ -1,24 +1,22 @@
 version: "3.8"
 services:
-  app:
+  java_db:
+    container_name: java_db
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+  java_app:
+    container_name: java_app
     build: .
     ports:
-      - 8091:8091
+      - 8080:8080
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/security?autoReconnect=true&useSSL=false
-    networks:
-      - springboot-mysql-network
+      - DATABASE_URL=jdbc:postgresql://java_db:5432/postgres
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
     depends_on:
-      - docker-mysql
-
-  docker-mysql:
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=admin
-      - MYSQL_USER=root
-    ports:
-      - 3306:3306
-    networks:
-      - springboot-mysql-network
-networks:
-  springboot-mysql-network:
+      - java_db
