@@ -2,7 +2,7 @@ package com.pruebaspring.jwt.securityspring.service;
 
 import com.pruebaspring.jwt.securityspring.mapper.ProductMapper;
 import com.pruebaspring.jwt.securityspring.model.ProductModel;
-import com.pruebaspring.jwt.securityspring.repository.IProductRepository;
+import com.pruebaspring.jwt.securityspring.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService implements  IProductService{
 
-    private final IProductRepository productResository;
+    private final ProductRepository productResository;
     private final ProductMapper mapper;
 
     @Override

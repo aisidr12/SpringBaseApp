@@ -1,0 +1,2 @@
+GET localhost:8081/customer/list
+Access-Control-Request-Headers: --header 'Authorization: Basic dXNlcjozMjgwNDE1MS1kYzE5LTQyNDUtODc0Ny04Yzc4OWM0OGZmOWE='
