@@ -6,10 +6,8 @@ import com.pruebaspring.jwt.securityspring.dto.CustomerDto;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 @Component
 public class JwtAuthenticationProvider {
